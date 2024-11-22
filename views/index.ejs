@@ -24,14 +24,20 @@
             <% if (messages) {%>
                 <% messages.forEach(function(message) { %>
                     <div>
-                        <% if (!user) {%>
-                            <p>Author: <%= message.first_name %> <%= message.last_name %> </p>
-                            <p>Date: <%= message.created_at %> </p>
+                        <% if (!user || user.membership_status === "REGULAR") {%>
+                            <p>Title: <%= message.title %> </p>
+                            <p>Content: <%= message.content %> </p>
                         <% } else {%>
                             <p>Author: <%= message.first_name %> <%= message.last_name %> </p>
                             <p>Date: <%= message.created_at %> </p>
                             <p>Title: <%= message.title %> </p>
                             <p>Content: <%= message.content %> </p>
+                        <% if (user.membership_status === "ADMIN") {%>
+                            <form action="/delete" method="post">
+                                <input type="hidden" name="message_id" value="<%= message.id %>">
+                                <button type="submit">Delete Message</button>
+                            </form>
+                            <% } %>
                         <% } %>
                     </div>
                 <% }); %>

@@ -9,6 +9,7 @@ import signUpRoute from './routes/signUpRoute.mjs';
 import logInRoute from './routes/logInRoute.mjs';
 import joinRoute from './routes/joinRoute.mjs';
 import createMessageRoute from './routes/createMessageRoute.mjs';
+import deleteRoute from './routes/deleteRoute.mjs';
 
 const app = express()
 
@@ -44,6 +45,7 @@ app.use('/', indexRoute)
 app.use('/log-in', logInRoute)
 app.use('/sign-up', signUpRoute)
 app.use('/create-message', createMessageRoute)
+app.use('/delete', deleteRoute)
 
 app.get("/log-out", (req, res, next) => {
     req.logout((err) => {
