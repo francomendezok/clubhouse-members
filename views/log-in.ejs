@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+</head>
+<body>
+    <%- include('header') %>
+    <main>
+        <% if (locals.success) { %>
+            <p>Registration successful! You can now log in.</p>
+        <% } %>
+        
+        <form action="/log-in" method="post">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="log-email" required>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="log-password" required>
+            <button type="submit">Log In</button>
+        </form>
+    </main>
+    <%- include('footer') %>
+</body>
+</html>

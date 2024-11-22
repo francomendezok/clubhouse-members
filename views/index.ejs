@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubhouse</title>
+</head>
+<body>
+    <% if (!user) {%>
+        <%- include('header') %>
+    <% } %>
+    <main>
+        <h1>Clubhouse</h1>
+        <p>Welcome to Clubhouse, a social media platform where you can connect with friends</p>
+        <% if (user) {%>
+            <h1>WELCOME BACK <%= user.first_name %></h1>
+            <h2>Your membership status is: <%= user.membership_status %></h2>
+            <% if (user.membership_status === "REGULAR") {%>
+                <a href="/join">Join the VIP Club</a>
+            <% } %>
+            <a href="/log-out">LOG OUT</a>
+        <% } %>
+        <section>
+            <% if (messages) {%>
+                <% messages.forEach(function(message) { %>
+                    <div>
+                        <% if (!user) {%>
+                            <p>Author: <%= message.first_name %> <%= message.last_name %> </p>
+                            <p>Date: <%= message.created_at %> </p>
+                        <% } else {%>
+                            <p>Author: <%= message.first_name %> <%= message.last_name %> </p>
+                            <p>Date: <%= message.created_at %> </p>
+                            <p>Title: <%= message.title %> </p>
+                            <p>Content: <%= message.content %> </p>
+                        <% } %>
+                    </div>
+                <% }); %>
+            <% } %>
+        </section>
+        <% if (user) {%>
+            <a href="/create-message">NEW MESSAGE</a>
+        <% } %>
+    </main>
+    <%- include('footer') %>
+</body>
+</html>

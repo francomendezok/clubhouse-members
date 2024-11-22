@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join the Clubhouse</title>
+</head>
+<body>
+    <main>
+        <% if (!user) { %>
+            <%- include('header') %>
+        <% } else { %>
+            <h1>Type the passcode to get VIP Access</h1>
+            <form action="/join" method="post">
+                <input type="password" name="passcode" placeholder="Enter passcode" required>
+                <button type="submit">VIP Access</button>
+            </form>
+        <% } %>
+        
+    </main>
+    <%- include('footer') %>
+</body>
+</html>
